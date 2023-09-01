@@ -791,7 +791,7 @@ function success(pos) {
   const crd = pos.coords;
   const x1 = crd.latitude;
   const y1 = crd.longitude;
-  //taulukon järjestäminen
+  // taulukon järjestäminen
   restaurants.sort(function (a, b) {
     const x2A = a.location.coordinates[1];
     const y2A = a.location.coordinates[0];
@@ -807,11 +807,23 @@ function success(pos) {
   });
   console.log(restaurants);
   console.log(crd);
-
+  const table = document.querySelector('table');
+  const tbody = document.querySelector('tbody');
   // tulosta ravintolat html dokumenttiin
   for (const restaurant of restaurants) {
-    const html = ``;
+    const row = document.createElement('tr');
+    const name = document.createElement('td');
+    const address = document.createElement('td');
+
+    name.textContent = restaurant.name;
+    address.textContent = restaurant.address;
+
+    row.appendChild(name);
+    row.appendChild(address);
+    tbody.appendChild(row);
   }
+
+  table.appendChild(tbody);
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
