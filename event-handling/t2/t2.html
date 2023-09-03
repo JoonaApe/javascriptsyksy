@@ -16,8 +16,24 @@
       <th>Name</th>
       <th>Address</th>
     </tr>
+    <tr onclick="highlightRestaurant(this, restaurant)">
+      <td class="restaurant-name"></td>
+      <td class="restaurant-address"></td>
+    </tr>
     <!-- add restaurants here -->
   </table>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Restaurant Details</h2>
+      <p><strong>Name:</strong> <span id="modal-restaurant-name"></span></p>
+      <p><strong>Address:</strong> <span id="modal-restaurant-address"></span></p>
+      <p><strong>Postal Code:</strong> <span id="modal-restaurant-postalcode"></span></p>
+      <p><strong>City:</strong> <span id="modal-restaurant-city"></span></p>
+      <p><strong>Phone number:</strong> <span id="modal-restaurant-phonenumber"></span></p>
+      <p><strong>Company:</strong> <span id="modal-restaurant-company"></span></p>
+    </div>
+  </div>
   <!-- modal -->
   <dialog>
     <!-- add restaurant info here when restaurant is clicked -->

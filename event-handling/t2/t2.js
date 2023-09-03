@@ -771,3 +771,72 @@ const restaurants = [
 ];
 
 // your code here
+const tableBody = document.querySelector('tbody');
+
+const sortedRestaurants = restaurants.slice().sort(function (a, b) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+});
+
+function insertTable() {
+  sortedRestaurants.forEach(function (restaurant) {
+    const row = document.createElement('tr');
+
+    const nameCell = document.createElement('td');
+    nameCell.innerText = restaurant.name;
+    nameCell.classList.add('restaurant-name');
+    row.appendChild(nameCell);
+
+    const addressCell = document.createElement('td');
+    addressCell.innerText = restaurant.address;
+    addressCell.classList.add('restaurant-address');
+    row.appendChild(addressCell);
+
+    tableBody.appendChild(row);
+
+    row.addEventListener('click', function () {
+      highlightRestaurant(row, restaurant);
+    });
+  });
+}
+
+function openModal(restaurant) {
+  const modal = document.getElementById('myModal');
+  const resName = document.getElementById('modal-restaurant-name');
+  const resAddress = document.getElementById('modal-restaurant-address');
+  const resPostalcode = document.getElementById('modal-restaurant-postalcode');
+  const resCity = document.getElementById('modal-restaurant-city');
+  const resPhone = document.getElementById('modal-restaurant-phonenumber');
+  const resCompany = document.getElementById('modal-restaurant-company');
+
+  resName.innerText = restaurant.name;
+  resAddress.innerText = restaurant.address;
+  resPostalcode.innerText = restaurant.postalCode;
+  resCity.innerText = restaurant.city;
+  resPhone.innerText = restaurant.phone;
+  resCompany.innerText = restaurant.company;
+
+  modal.classList.add('open');
+}
+
+function closeModal() {
+  const modal = document.getElementById('myModal');
+  modal.classList.remove('open');
+}
+
+function highlightRestaurant(row, restaurant) {
+  const restaurantRows = document.querySelectorAll('tbody tr');
+  restaurantRows.forEach(function (r) {
+    r.classList.remove('highlight');
+  });
+  row.classList.add('highlight');
+
+  openModal(restaurant); // Pass the clicked restaurant data to the modal
+}
+
+insertTable();
