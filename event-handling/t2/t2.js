@@ -836,7 +836,7 @@ function highlightRestaurant(row, restaurant) {
   });
   row.classList.add('highlight');
 
-  openModal(restaurant); // Pass the clicked restaurant data to the modal
+  openModal(restaurant);
 }
 
 insertTable();
