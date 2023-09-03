@@ -1,7 +1,7 @@
 const tableBody = document.querySelector('tbody');
 
 function populateTable(data) {
-  data.forEach(restaurant => {
+  data.forEach(function (restaurant) {
     const row = document.createElement('tr');
 
     const nameCell = document.createElement('td');
