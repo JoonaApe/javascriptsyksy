@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Phudu:wght@300&display=swap');
+
+body {
+  margin: auto;
+  text-align: center;
+  font-family: 'Phudu', cursive;
+}
+
+
+img {
+height: 300px;
+width: 300px;
+}
+
