@@ -61,7 +61,17 @@ const formData = new FormData();
 const updateUserData = async (
   user: UpdateUser,
   token: string
-): Promise<UpdateResult> => {};
+): Promise<UpdateResult> => {
+  const options: RequestInit = {
+    method: 'PUT',
+    headers: {
+      'Content-Type' : 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify(user),
+  }
+  return await fetchData(apiUrl + "/users/", options);
+};
 
 // TODO: function to add userdata (email, username and avatar image) to the
 // Profile DOM and Edit Profile Form
@@ -127,6 +137,26 @@ loginForm?.addEventListener("submit", async (evt) => {
 // TODO: profile form event listener
 // event listener should call updateUserData function and update the DOM with
 // the user data by calling addUserDataToDom or checkToken
+profileForm?.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const user = {
+    username: profileUsernameInput?.value,
+    email: profileEmailInput?.value,
+  };
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return;
+  }
+
+    const profileData: UpdateResult = await updateUserData(user, token)
+    // Assuming you want to update the DOM with the updated user data
+    addUserDataToDom(profileData.data);
+    console.log(profileData.data);
+});
+
+
+
 
 // TODO: avatar form event listener
 // event listener should call uploadAvatar function and update the DOM with
